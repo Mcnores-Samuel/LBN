@@ -4,7 +4,7 @@ This form is used to create a job post.
 from django import forms
 from ..models.job_listings import JobListing
 from ..models.business_profile import BusinessProfile
-from ..models.users import HarmonixUser
+from ..models.users import LbnUser
 from django.utils import timezone
 
 
@@ -142,7 +142,7 @@ class JobPostForm(forms.Form):
             A job post.
         """
         company = BusinessProfile.objects.get(
-            representative=HarmonixUser.objects.get(username=self.user.username))
+            representative=LbnUser.objects.get(username=self.user.username))
         job_post = JobListing(
             company=company,
             date_posted=timezone.now(),

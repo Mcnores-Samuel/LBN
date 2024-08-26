@@ -1,5 +1,5 @@
 from ..models.business_profile import BusinessProfile
-from ..models.users import HarmonixUser
+from ..models.users import LbnUser
 from django import forms
 from django.utils import timezone
 
@@ -159,7 +159,7 @@ class BusinessProfileForm(forms.Form):
         Returns:
             A business profile.
         """
-        user = HarmonixUser.objects.get(id=self.user.id)
+        user = LbnUser.objects.get(id=self.user.id)
         user.user_type = 'Business owner'
         user.save()
         business_profile = BusinessProfile(

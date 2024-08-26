@@ -1,7 +1,7 @@
 """This module contains the sign up form class
 allowing users to create accounts.
 """
-from ..models.users import HarmonixUser
+from ..models.users import LbnUser
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -35,5 +35,5 @@ class SignUpForm(UserCreationForm):
             attrs={'class': 'form-control'}))
     
     class Meta:
-        model = HarmonixUser
+        model = LbnUser
         fields = ('username', 'email', 'password1', 'password2', 'register_interest')

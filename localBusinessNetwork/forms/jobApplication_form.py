@@ -1,6 +1,5 @@
 from ..models.Job_application import JobApplication
 from ..models.job_listings import JobListing
-from ..models.users import HarmonixUser
 from ..models.professional_profile import ProfessionalProfile
 from django import forms
 from django.utils import timezone

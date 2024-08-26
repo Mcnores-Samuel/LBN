@@ -1,6 +1,6 @@
 from django import forms
 from ..models.feedback import Feedback
-from ..models.users import HarmonixUser
+from ..models.users import LbnUser
 from django.utils import timezone
 
 
@@ -46,7 +46,7 @@ class FeedBackForm(forms.Form):
     def process_feedback(self):
         """This method is used to process the feedback"""
         if self.user:
-            user = HarmonixUser.objects.get(username=self.user.username)
+            user = LbnUser.objects.get(username=self.user.username)
             feedback = Feedback(
                 user=user,
                 date=timezone.now(),
