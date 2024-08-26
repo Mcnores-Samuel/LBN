@@ -1,4 +1,4 @@
-environ/
+venv/
 .vscode/
 __pycache__/
 migrations/
