@@ -79,7 +79,7 @@ class LbnUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     class Meta:
-        app_label = 'Harmonix'
+        app_label = 'localBusinessNetwork'
 
     def __str__(self):
         return self.email

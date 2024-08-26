@@ -56,4 +56,4 @@ class JobApplication(models.Model):
         validators=[validate_email])
 
     class Meta:
-        app_label = 'Harmonix'
+        app_label = 'localBusinessNetwork'

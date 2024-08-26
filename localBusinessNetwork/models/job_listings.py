@@ -49,7 +49,7 @@ class JobListing(models.Model):
     cautions = models.TextField()
 
     class Meta:
-        app_label = 'Harmonix'
+        app_label = 'localBusinessNetwork'
 
     def __str__(self):
         return self.title

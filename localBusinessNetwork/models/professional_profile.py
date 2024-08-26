@@ -57,7 +57,7 @@ class ProfessionalProfile(models.Model):
                                null=True, blank=True)
 
     class Meta:
-        app_label = 'Harmonix'
+        app_label = 'localBusinessNetwork'
 
     def __str__(self):
         return self.first_name + " " + self.last_name
