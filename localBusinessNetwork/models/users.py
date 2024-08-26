@@ -3,7 +3,7 @@ and professional profile model allowing users to
 create accounts and profiles.
 """
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.contrib.auth.models import BaseUserManager
 from django.core.validators import (FileExtensionValidator, validate_email)
 
