@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'LocalBusinessNetwork.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASE_URL = os.environ.get('DARABASE_URL')
+DATABASE_PUBLIC_URL  = os.environ.get('DATABASE_PUBLIC_URL')
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=DATABASE_URL,
+        default=DATABASE_PUBLIC_URL,
         conn_max_age=600,
     )
 }
@@ -166,7 +166,6 @@ STATIC_SOURCE = os.environ.get('STATIC_SOURCE')
 if STATIC_SOURCE == 'local':
     STATIC_ROOT = BASE_DIR / 'staticfiles'
     STATIC_URL = '/static/'
-
     MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
     MEDIA_URL = '/media/'
 else:
