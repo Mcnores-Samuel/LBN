@@ -3,7 +3,7 @@ allowing job seekers to create professional profiles.
 """
 from django.db import models
 from django.utils import timezone
-from .users import HarmonixUser
+from .users import LbnUser
 
 
 class ProfessionalProfile(models.Model):
@@ -34,7 +34,7 @@ class ProfessionalProfile(models.Model):
     """
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
-    jobseeker = models.OneToOneField(HarmonixUser, on_delete=models.CASCADE)
+    jobseeker = models.OneToOneField(LbnUser, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address = models.CharField(max_length=255)

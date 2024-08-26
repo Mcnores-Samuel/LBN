@@ -3,7 +3,7 @@ allowing users to submit feedback.
 """
 from django.db import models
 from django.utils import timezone
-from .users import HarmonixUser
+from .users import LbnUser
 
 
 class Feedback(models.Model):
@@ -27,7 +27,7 @@ class Feedback(models.Model):
         ("complaint", "complaint"),
         ("other", "other")
     )
-    user = models.ForeignKey(HarmonixUser, on_delete=models.CASCADE,
+    user = models.ForeignKey(LbnUser, on_delete=models.CASCADE,
                              null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
     user_name = models.CharField(max_length=100,
@@ -38,4 +38,4 @@ class Feedback(models.Model):
     priority = models.IntegerField(default=0)
 
     class Meta:
-        app_label = 'Harmonix'
+        app_label = 'localBusinessNetwork'

@@ -3,7 +3,7 @@ allowing businesses to create business profiles.
 """
 from django.db import models
 from django.utils import timezone
-from .users import HarmonixUser
+from .users import LbnUser
 
 
 class BusinessProfile(models.Model):
@@ -29,7 +29,7 @@ class BusinessProfile(models.Model):
     """
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
-    representative = models.ForeignKey(HarmonixUser, on_delete=models.CASCADE)
+    representative = models.ForeignKey(LbnUser, on_delete=models.CASCADE)
     business_name = models.CharField(max_length=100, unique=True)
     category = models.CharField(max_length=255, default='Other')
     address = models.CharField(max_length=50)

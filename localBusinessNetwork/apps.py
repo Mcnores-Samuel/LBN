@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class HarmonixConfig(AppConfig):
+class localBusinessNetworkConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Harmonix'
-    models = "Harmonix.models"
+    name = 'localBusinessNetwork'
+    models = "localBusinessNetwork.models"
