@@ -1,0 +1,29 @@
+{% extends 'company_sites/dashboard.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+<div class="container">
+    <br>
+    <h1 class="text-center">Job Decription</h1>
+    <br>
+    <div class="container">
+        {% bootstrap_messages %}
+    </div>
+    <div class="container shadow-lg p-3 mb-5 bg-body rounded">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            {% if job_instance %}
+            <button type="submit" class="btn apply-btn">update</button>
+            {% else %}
+                <button type="submit" class="btn apply-btn">Post</button>
+            {% endif %}
+        </form>
+    </div>
+    <br>
+</div>
+{% endblock %}

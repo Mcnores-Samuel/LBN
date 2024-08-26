@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/base_header.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+        <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+
+        {% block head %}
+        {% endblock %}
+        <script src="{% static 'scripts/sidebar.js' %}" defer></script>
+        <style>
+            .animated-section {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 1.7s ease, transform 1.7s ease;
+            }
+    
+            .animated-section.loaded {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row w-100">
+            <div class="col-md-2 col-12">
+                <div class="topbar">
+                    <a class="navbar-brand fw-bold" href="/">SkillHarmonix</a>
+                    <button class="navbar-toggler menu" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse">
+                        <span class="material-icons">
+                            menu
+                            </span>
+                    </button>
+                </div>
+                <br>
+                <div class="collapse navbar-collapse d-md-block wrapper" id="sidebarCollapse">
+                    <div class="sidebar">
+                        <div class="topbar-wrapper heading bg-success ">
+                            <div class="logo">
+                                <span class="material-icons">
+                                    menu
+                                </span>
+                            </div>
+                            <div class="text-center text-fs text-light brandname text">Skill Harmonix</div>
+                        </div>
+                        <ul class="navbar-nav flex-column me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'dashboard' %}"
+                                data-bs-toggle="tooltip"
+                                title="Dashboard">
+                                    <span class="material-icons">
+                                        dashboard
+                                    </span>
+                                    <span class="text"> Dashboard</span>
+                                </a>
+                            </li>
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'professional_profile' %}"
+                                data-bs-toggle="tooltip" 
+                                title="Profile">
+                                    <span class="material-icons">
+                                        account_circle
+                                    </span>
+                                    <span class="text"> Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="{% url 'log_out' %}"
+                                data-bs-toggle="tooltip" 
+                                title="Logout">
+                                    <span class="material-icons">
+                                        logout
+                                    </span>
+                                    <span class="text"> Logout</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'create_feedback' %}"
+                                data-bs-toggle="tooltip" 
+                                title="feedback">
+                                    <span class="material-icons">
+                                    feedback
+                                    </span>
+                                    <span class="text"> Feedback</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="presentaion">
+            {% block content %}
+                {% if messages %}
+                    <div class="messages animated-section">
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% elif message.tags == 'error' %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% elif message.tags == 'warning' %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            <div class="top-display d-flex position-relative bg-light">
+                <form action="" method="post" class="d-flex position-relative search-form">
+                    {% csrf_token %}
+                    <input type="search" name="search_query" id="search_query" placeholder="Search for the job that match your skills"
+                    class="form-control me-2 search-input" arcreate_feedbackia-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" class="btn apply-btn search-btn material-icons">search</button>
+                </form>
+                <div class="notify">
+                    <div class="dropdown">
+                        <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="material-icons">
+                                notifications
+                            </span>
+                            <span class="badge bg-danger"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <div class="d-flex">
+                                            <span class="material-icons">
+                                                notifications
+                                            </span>
+                                        <div class="">
+                                            <p class=""></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile">
+                    {% if avatar.image %}
+                    <img src="{{ avatar.image.url }}" alt="avatar" class="avatar">
+                    {% else %}
+                        <span class="material-icons">
+                            account_circle
+                        </span>
+                    {% endif %}
+                    <div class="dropdown">
+                        <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'professional_profile' %}">
+                                    <div class="d-flex">
+                                        <div class="icon">
+                                            <span class="material-icons">
+                                                account_circle
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <p>Profile</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'log_out' %}">
+                                    <div class="d-flex">
+                                        <div class="icon">
+                                            <span class="material-icons">
+                                                logout
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <p>Logout</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container animated-section">
+                <form action="" method="post" id="filter_form">
+                    {% csrf_token %}
+                    <div class="input-group mb-3 gap-5 d-flex justify-content-between">
+                        <div class="d-flex gap-2 align-items-center">
+                            <label for="location_ft" class="form-label fw-bold text-muted">Location</label>
+                            <input type="text" class="form-control rounded-pill" name="location" id="location_ft" placeholder="Location" list="locations">
+                            <datalist id="locations">
+                                {% for location in locations %}
+                                    <option value="{{ location }}">{{ location }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <label for="position_ft" class="form-label fw-bold text-muted">Position</label>
+                            <input type="text" class="form-control rounded-pill" name="position" id="position_ft" placeholder="Position" list="positions">
+                            <datalist id="positions">
+                                {% for position in pos %}
+                                    <option value="{{ position }}">{{ position }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <label for="category_ft" class="form-label fw-bold text-muted">Category</label>
+                            <input type="text" class="form-control rounded-pill" name="category" id="category_ft" placeholder="Category" list="categories">
+                            <datalist id="categories">
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <section class="">
+                <div class="row gy-3">
+                    <div class="col-md-8 col-12 card_holder all-data-card">
+                        <br>
+                            <h5 class="fw-bold text-muted animated-section text-center">Available Jobs</h5>
+                        <br>
+                        <div class="container">
+                            <div class="row gy-3">
+                                {% for job in data %}
+                                <div class="col-md-6">
+                                    <div class="card animated-section h-100"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#viewJobModal{{ job.id }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                {% if job.company.logo.url %}
+                                                    <img src="{{ job.company.logo.url }}" alt="{{ job.company.business_name }}" class="img-fluid logo_img">
+                                                {% else %}
+                                                    <span class="material-icons">
+                                                        business
+                                                    </span>
+                                                {% endif %}
+                                                <h6 class="card-subtitle mb-2 text-muted fw-bold">{{ job.company.business_name }}</h6>
+                                            </div>
+                                            <br>
+                                            <h5 class="card-title fw-bold fs-6 text-muted">{{ job.title }}</h5>
+                                            <p><strong>Location:</strong> {{ job.location }}</p>
+                                            <p class="text-muted fw-bold">{{ job.working_time }}</p>
+                                            <p class="text-muted fw-bold">{{ job.working_location }}</p>
+                                        </div>
+                                        <div class="card-footer border-0 bg-white">
+                                            <a href="{% url 'job_application_point' job_id=job.id %}" class="btn apply-btn w-100 rounded-pill">
+                                                Apply
+                                            </a>
+                                        </div>
+                                    </div>
+        
+                                    <div class="modal fade" id="viewJobModal{{ job.id }}" tabindex="-1" aria-labelledby="viewJobModalLabel{{ job.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="container d-inline-flex gap-3 align-items-center">
+                                                        {% if job.company.logo.url %}
+                                                            <img src="{{ job.company.logo.url }}" alt="{{ job.company.business_name }}" class="img-fluid logo_img">
+                                                        {% else %}
+                                                            <span class="material-icons">
+                                                                business
+                                                            </span>
+                                                        {% endif %}
+                                                         <h5 class="modal-title fw-bold mb-2 text-muted fw-bold" id="viewJobModalLabel{{ job.id }}">{{ job.company.business_name }}</h5>
+                                                    </div>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center fw-bold" id="viewJobModalLabel{{ job.id }}">{{ job.title }}</h5>
+                                                    <p><strong>Posted On:</strong> {{ job.date_posted }}</p>
+                                                    <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+                                                    <p><strong>Working Time:</strong> {{ job.working_time }}</p>
+                                                    <p><strong>Working Location:</strong> {{ job.working_location }}</p>
+                                                    <p><strong>Position:</strong> {{ job.position }}</p>
+                                                    <p><strong>Salary:</strong> {{ job.salary }}</p>
+                                                    <p><strong>Location:</strong> {{ job.location }}</p>
+                                                    <p><strong>Job Description:</strong> {{ job.description }}</p>
+                                                    <p><strong>Your Roles:</strong> {{ job.roles }}</p>
+                                                    <p><strong>Skills:</strong> {{ job.skills }}</p>
+                                                    <p><strong>Qualifications:</strong> {{ job.qualifications }}</p>
+                                                    <p><strong>Experience:</strong> {{ job.experience }}</p>
+                                                    <p><strong>Education:</strong> {{ job.education }}</p>
+                                                    <p><strong>Benefits:</strong> {{ job.benefits }}</p>
+                                                    <p><strong>Contacts:</strong> {{ job.contacts }}</p>
+                                                    <p><strong>How to apply:</strong> {{ job.how_to_apply }}</p>
+                                                    <p><strong>cautions:</strong> {{ job.cautions }}</p>
+        
+                                                    <div class="d-flex justify-content-center">
+                                                        <a href="{% url 'job_application_point' job_id=job.id %}" class="btn apply-btn w-100 rounded-pill">
+                                                            Apply
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 card_holder">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h4 class="fw-bold text-muted fs-5">Job matching your Profile</h4>
+                            </div>
+                            <div class="card-body">
+                                {% for job in recommended %}
+                                    <div class="card" data-bs-toggle="modal"
+                                    data-bs-target="#viewJobModal{{ job.id }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title fs-6 fw-bold text-muted">{{ job.title }}</h5>
+                                            <p><strong>Location:</strong> {{ job.location }}</p>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{% url 'job_application_point' job_id=job.id %}" class="btn apply-btn w-100 rounded-pill">
+                                                    Apply
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            {% endblock %}
+        </section>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const sections = document.querySelectorAll('.animated-section');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                        } else {
+                            entry.target.classList.remove('loaded');
+                        }
+                    });
+                });
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+
+            const filter_form = $('#filter_form');
+            const location_ft = $('#location_ft');
+            const position_ft = $('#position_ft');
+            const category_ft = $('#category_ft');
+            category_ft.on('change', () => {
+                filter_form.submit();
+            });
+
+            position_ft.on('change', () => {
+                filter_form.submit();
+            });
+
+            location_ft.on('change', () => {
+                filter_form.submit();
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
