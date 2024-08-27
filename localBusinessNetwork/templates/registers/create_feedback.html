@@ -12,10 +12,11 @@
 <section class="container">
   <div class="mw-100 d-inline-flex shadow-lg p-3 mb-5 bg-body rounded">
     <div class="w-50">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" alt="SHX Logo" class="img-fluid">
+    <img src="https://raw.githubusercontent.com/Mcnores-Samuel/LBN/main/localBusinessNetwork/static/logo_lbn.jpeg" alt="SHX Logo" class="img-fluid">
     </div>
     <div class="w-50">
-    <h1 class="text-center">SignUp</h1>
+    <h1 class="text-center text-muted fw-bold">Feedback</h1>
+    <p class="text-center text-info">Your feedback is important to us. Please enter your feedback below.</p>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy}}

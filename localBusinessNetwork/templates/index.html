@@ -13,25 +13,34 @@
         <link rel="stylesheet" href="{% static 'styles/common.css' %}">
         <link rel="stylesheet" href="{% static 'styles/job_listing.css' %}">
         <link rel="stylesheet" href="{% static 'styles/navigation.css' %}">
+        {% block styles %}
+            <style>
+                .animated-section {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: opacity 1.7s ease, transform 1.7s ease;
+                }
+        
+                .animated-section.loaded {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                .logo_img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            </style>
+        {% endblock %}
         <title>{% block title %}SkillsHarmonix{% endblock %}</title>
-        <style>
-            .animated-section {
-                opacity: 0;
-                transform: translateY(30px);
-                transition: opacity 1.7s ease, transform 1.7s ease;
-            }
-    
-            .animated-section.loaded {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        </style>
     </head>
     <body>
         {% block navbar %}
-        <nav class="navbar navbar-expand-sm justify-content-center">
+        <nav class="navbar navbar-expand-sm">
             <div class="container-fluid">
-                <a class="navbar-brand text-white fw-bold brand_name" href="/">LBN</a>
+                <a class="navbar-brand text-white fw-bold brand_name" href="/">
+                    <img src="https://raw.githubusercontent.com/Mcnores-Samuel/LBN/main/localBusinessNetwork/static/logo_lbn.jpeg" alt="" srcset="" class="logo_img">
+                </a>
                 <button class="toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon text-white material-icons">menu</span>
                 </button>

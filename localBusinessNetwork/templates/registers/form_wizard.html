@@ -1,0 +1,27 @@
+{% extends 'jobseeker_sites/dashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Professional Profile Setup</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Render the form fields for the current step -->
+        {{ wizard.form|crispy }}
+
+        <!-- Navigation buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            {% if wizard.steps.prev %}
+                <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn btn-outline-secondary">
+                    Previous
+                </button>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">
+                {% if wizard.steps.last %}Finish{% else %}Next{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

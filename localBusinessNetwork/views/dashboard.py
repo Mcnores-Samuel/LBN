@@ -57,9 +57,11 @@ def dashboard(request):
                 job_skills = job.skills.split(',')
                 if any(item in job_skills for item in user_skills):
                     recommended.append(job)
-        except AttributeError:
-            messages.info(request, 'Please create a professional profile to view recommended jobs')
-            return redirect('professional_profile')
+        except Exception as err:
+            if str(err) == 'professional_profile matching query does not exist.':
+                messages.info(request, 'Please create a professional profile to view recommended jobs')
+                return redirect('professional_profile')
+            return redirect('create_profile')
         if request.method == 'POST':
             data = search_engine(request)
         context = {

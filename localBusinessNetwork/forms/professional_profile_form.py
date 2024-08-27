@@ -89,19 +89,19 @@ class ProfessionalProfileForm(forms.Form):
         widget=forms.Textarea(
             attrs={'placeholder': 'Describe yourself',
             'class': 'form-control animated-section',
-            'rows': 5, 'cols': 20, 'style': 'resize:none;'}))
+            'rows': 3, 'cols': 20, 'style': 'resize:none;'}))
     experience = forms.CharField(
         required=False,
         widget=forms.Textarea(
             attrs={'placeholder': 'Describe your experience',
             'class': 'form-control animated-section',
-            'rows': 5, 'cols': 20, 'style': 'resize:none;'}))
+            'rows': 3, 'cols': 20, 'style': 'resize:none;'}))
     education = forms.CharField(
         required=False,
         widget=forms.Textarea(
             attrs={'placeholder': 'Describe your education',
             'class': 'form-control animated-section',
-            'rows': 5, 'cols': 20, 'style': 'resize:none;'}))
+            'rows': 3, 'cols': 20, 'style': 'resize:none;'}))
     preferences = forms.CharField(
         required=False,
         widget=forms.Textarea(

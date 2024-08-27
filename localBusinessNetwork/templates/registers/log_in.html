@@ -2,16 +2,21 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load bootstrap5 %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/forms.css' %}">
+{% endblock %}
+{% block title %}Log in{% endblock %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block container %}
 <br>
-{% bootstrap_messages %}
-<br><br>
+<div class="container w-50">
+  {% bootstrap_messages %}
+</div>
 <section class="container d-flex justify-content-center">
   <div class="mw-100 d-inline-flex shadow-lg p-3 mb-5 bg-body rounded form-container">
-    <div class="">
-    <img src="/localBusinessNetwork/static/logo_lbn.jpeg" alt="SHX Logo" class="img-fluid">
+    <div class="d-flex flex-column justify-content-center">
+    <img src="https://raw.githubusercontent.com/Mcnores-Samuel/LBN/main/localBusinessNetwork/static/logo_lbn.jpeg" alt="LBN Logo" class="img-fluid">
     </div>
     <div class="">
     <h1 class="text-center fw-bold text-muted">Log in</h1>
@@ -24,64 +29,4 @@
     </div>
   </div>
 </section>
-<style>
-    /* General container styling */
-  .form-container {
-    background-color: #f8f9fa;
-    border-radius: 30px;
-    transition: transform 0.2s ease-in-out;
-    width: 80%;
-  }
-
-  .form-container > div {
-    padding: 20px;
-    width: 50%;
-  }
-
-  /* Add hover effect for the form container */
-  .form-container:hover {
-    transform: scale(1.02);
-  }
-
-  /* Adjust padding and form button style */
-  .form-container .btn {
-    padding: 10px 15px;
-    font-size: 18px;
-    border-radius: 10px;
-  }
-
-  /* Add some spacing inside the form */
-  .form-container form {
-    padding: 15px 0;
-  }
-
-  /* Add a bit of style to the title */
-  .form-container h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-  }
-
-  /* Image container styling */
-  .form-container img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-
-  /* Responsive design adjustments */
-  @media (max-width: 768px) {
-    .form-container {
-      flex-direction: column;
-      padding: 20px;
-      width: 100%;
-    }
-    
-    .form-container > div {
-      width: 100%;
-    }
-
-    .form-container img {
-      margin-bottom: 20px;
-    }
-  }
-</style>
 {% endblock %}

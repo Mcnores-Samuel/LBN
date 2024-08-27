@@ -30,4 +30,4 @@ def professional_profile(request):
     else:
         form = ProfessionalProfileForm(user=request.user, instance=professional)
     return render(request, 'registers/professional_profile.html',
-                  {'form': form})
+                  {'form': form, 'user_profile': professional})
