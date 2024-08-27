@@ -3,18 +3,21 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 {% block title %}Feedback{% endblock %}
+{% block styles %}
+ <link rel="stylesheet" href="{% static 'styles/forms.css' %}">
+{% endblock %}
 {% block container %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 <br>
 {% bootstrap_messages %}
 <br>
-<section class="container">
-  <div class="mw-100 d-inline-flex shadow-lg p-3 mb-5 bg-body rounded">
-    <div class="w-50">
+<section class="container d-flex justify-content-center">
+  <div class="mw-100 d-flex shadow-lg p-3 mb-5 bg-body rounded form-container">
+    <div>
     <img src="https://raw.githubusercontent.com/Mcnores-Samuel/LBN/main/localBusinessNetwork/static/logo_lbn.jpeg" alt="SHX Logo" class="img-fluid">
     </div>
-    <div class="w-50">
+    <div>
     <h1 class="text-center text-muted fw-bold">Feedback</h1>
     <p class="text-center text-info">Your feedback is important to us. Please enter your feedback below.</p>
     <form action="" method="post" enctype="multipart/form-data">

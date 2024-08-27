@@ -23,7 +23,7 @@ class FeedBackForm(forms.Form):
     message = forms.CharField(
         required=False,
         widget=forms.Textarea(
-            attrs={"placeholder": "Please enter your feedback here"})
+            attrs={"placeholder": "Please enter your feedback here", 'rows': 3})
             )
     priority = forms.IntegerField(
         required=False,

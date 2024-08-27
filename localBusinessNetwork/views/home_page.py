@@ -44,6 +44,7 @@ def home_page(request):
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
     context = {
+        'user': request.user,
         'data': data,
         'pos': pos,
         'categories': categories,
