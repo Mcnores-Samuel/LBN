@@ -36,14 +36,6 @@ SERVER3 = os.environ.get('SERVER3')
 ALLOWED_HOSTS = [DOMAIN, SERVER1, SERVER2, SERVER3]
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://symctechs.com',
-    'https://www.symctechs.com',
-    'http://symctechs.com',
-    'http://www.symctechs.com',
-]
-
-
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
