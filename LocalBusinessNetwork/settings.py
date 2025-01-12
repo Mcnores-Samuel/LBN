@@ -39,6 +39,9 @@ ALLOWED_HOSTS = [DOMAIN, SERVER1, SERVER2, SERVER3]
 CSRF_TRUSTED_ORIGINS = [DOMAIN, SERVER1, SERVER2, SERVER3, 'localhost',
                         'https://www.symctechs.com']
 
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
