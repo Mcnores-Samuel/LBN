@@ -36,6 +36,9 @@ SERVER3 = os.environ.get('SERVER3')
 ALLOWED_HOSTS = [DOMAIN, SERVER1, SERVER2, SERVER3]
 
 
+CSRF_TRUSTED_ORIGINS = [DOMAIN, SERVER1, SERVER2, SERVER3, 'localhost',
+                        'https://www.symctechs.com']
+
 # Application definition
 
 INSTALLED_APPS = [
