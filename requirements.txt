@@ -8,7 +8,7 @@ crispy-bootstrap5==2023.10
 cryptography==43.0.0
 deprecation==2.1.0
 dj-database-url==2.1.0
-Django==4.2.15
+Django==4.2.16
 django-bootstrap-v5==1.0.11
 django-crispy-forms==2.1
 django-email-verification==0.3.3
